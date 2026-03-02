@@ -12,23 +12,15 @@ import pandas as pd
 import pickle
 import gzip
 
-# ----------------------------
-# CONFIGURAÇÃO DA PÁGINA
-# ----------------------------
 st.set_page_config(
     page_title="Sistema Preditivo de Obesidade",
     page_icon="🏥",
-    layout="wide"
+    layout="centered"
 )
 
 st.title("🏥 Sistema Preditivo de Obesidade")
-st.markdown("Modelo de Machine Learning para apoio à decisão médica")
+st.markdown("Predição baseada em idade, altura e peso.")
 
-st.divider()
-
-# ----------------------------
-# CARREGAR MODELO
-# ----------------------------
 @st.cache_resource
 def carregar_modelo():
     with gzip.open("modelo.pkl.gz", "rb") as f:
@@ -38,67 +30,24 @@ def carregar_modelo():
 
 model, colunas = carregar_modelo()
 
-# ----------------------------
-# INPUTS
-# ----------------------------
-col1, col2 = st.columns(2)
+st.subheader("📋 Dados do Paciente")
 
-with col1:
-    st.subheader("📋 Dados Físicos")
-    age = st.number_input("Idade", 14, 70)
-    height = st.number_input("Altura (m)", 1.40, 2.10)
-    weight = st.number_input("Peso (kg)", 40, 200)
+age = st.number_input("Idade", 14, 70)
+height = st.number_input("Altura (m)", 1.40, 2.10)
+weight = st.number_input("Peso (kg)", 40, 250)
 
-with col2:
-    st.subheader("🧬 Hábitos")
-    family_history = st.selectbox("Histórico familiar de obesidade?", ["yes", "no"])
-    favc = st.selectbox("Consome alimentos altamente calóricos?", ["yes", "no"])
-    faf = st.selectbox("Frequência atividade física (0-3)", [0, 1, 2, 3])
-
-st.divider()
-
-# ----------------------------
-# PREDIÇÃO
-# ----------------------------
 if st.button("🔍 Realizar Predição"):
 
-    input_dict = {col: 0 for col in colunas}
-
-    # Numéricas
-    if "Age" in input_dict:
-        input_dict["Age"] = age
-    if "Height" in input_dict:
-        input_dict["Height"] = height
-    if "Weight" in input_dict:
-        input_dict["Weight"] = weight
-    if "FAF" in input_dict:
-        input_dict["FAF"] = faf
-
-    # Categóricas
-    for categoria, valor in {
-        "family_history": family_history,
-        "FAVC": favc
-    }.items():
-        nome_col = f"{categoria}_{valor}"
-        if nome_col in input_dict:
-            input_dict[nome_col] = 1
-
-    input_df = pd.DataFrame([input_dict])
+    input_df = pd.DataFrame([[age, height, weight]], columns=colunas)
 
     prediction = model.predict(input_df)[0]
     proba = model.predict_proba(input_df)
 
     st.success(f"📊 Nível previsto: **{prediction}**")
 
-    st.subheader("Probabilidade por Classe")
     prob_df = pd.DataFrame({
         "Classe": model.classes_,
         "Probabilidade": proba[0]
     }).sort_values(by="Probabilidade", ascending=False)
 
     st.dataframe(prob_df, use_container_width=True)
-
-    if "Obesity" in prediction:
-        st.warning("⚠️ Recomenda-se acompanhamento médico e avaliação nutricional.")
-    else:
-        st.info("✅ Paciente dentro de faixa adequada ou sobrepeso leve.")
