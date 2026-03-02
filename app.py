@@ -12,6 +12,9 @@ import pandas as pd
 import pickle
 import gzip
 
+# ----------------------------
+# CONFIGURAÇÃO DA PÁGINA
+# ----------------------------
 st.set_page_config(
     page_title="Sistema Preditivo de Obesidade",
     page_icon="🏥",
@@ -21,29 +24,44 @@ st.set_page_config(
 st.title("🏥 Sistema Preditivo de Obesidade")
 st.markdown("Predição baseada em idade, altura e peso.")
 
+# ----------------------------
+# CARREGAR MODELO
+# ----------------------------
 @st.cache_resource
 def carregar_modelo():
     with gzip.open("modelo.pkl.gz", "rb") as f:
         model = pickle.load(f)
-    colunas = pickle.load(open("colunas.pkl", "rb"))
-    return model, colunas
+    return model
 
-model, colunas = carregar_modelo()
+model = carregar_modelo()
 
+# ----------------------------
+# INPUTS
+# ----------------------------
 st.subheader("📋 Dados do Paciente")
 
-age = st.number_input("Idade", 14, 70)
-height = st.number_input("Altura (m)", 1.40, 2.10)
-weight = st.number_input("Peso (kg)", 40, 250)
+age = st.number_input("Idade", min_value=14, max_value=80, value=25)
+height = st.number_input("Altura (m)", min_value=1.40, max_value=2.20, value=1.70)
+weight = st.number_input("Peso (kg)", min_value=40, max_value=250, value=70)
 
+# ----------------------------
+# PREDIÇÃO
+# ----------------------------
 if st.button("🔍 Realizar Predição"):
 
-    input_df = pd.DataFrame([[age, height, weight]], columns=colunas)
+    # Criar DataFrame exatamente como foi treinado
+    input_df = pd.DataFrame({
+        "Age": [age],
+        "Height": [height],
+        "Weight": [weight]
+    })
 
     prediction = model.predict(input_df)[0]
     proba = model.predict_proba(input_df)
 
     st.success(f"📊 Nível previsto: **{prediction}**")
+
+    st.subheader("Probabilidade por Classe")
 
     prob_df = pd.DataFrame({
         "Classe": model.classes_,
