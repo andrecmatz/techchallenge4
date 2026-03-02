@@ -81,7 +81,7 @@ Exibição das probabilidades por classe
 Apoio visual para interpretação clínica
  
  Link da aplicação:
-https://tech-challenge-fase-04-obesity-jx2aeprbahjhygk9hpszpc.streamlit.app/
+[https://tech-challenge-fase-04-obesity-jx2aeprbahjhygk9hpszpc.streamlit.app/](https://techchallenge4-qpkzvfz3hxax4qg9wwyika.streamlit.app/)
 
 ## Insights Analíticos
 
