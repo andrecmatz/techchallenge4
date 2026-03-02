@@ -1,6 +1,6 @@
-#🏥 Tech Challenge – Fase 04 | Predição de Obesidade
+# Tech Challenge – Fase 04 | Predição de Obesidade
 
-##📌 Visão Geral
+## Visão Geral
 
 Este projeto foi desenvolvido como parte do Tech Challenge – Fase 04 da Pós-Tech em Data Analytics.
 
