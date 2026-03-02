@@ -20,7 +20,7 @@ Geração de insights analíticos
 
 O modelo atingiu acurácia superior a 75%, atendendo ao requisito mínimo estabelecido no desafio.
 
-##🧠 Problema de Negócio
+## Problema de Negócio
 
 A obesidade é uma condição multifatorial associada a fatores genéticos, comportamentais e ambientais.
 
@@ -34,7 +34,7 @@ Contribuir para estratégias preventivas
 
 Apoiar decisões clínicas com base em dados
 
-##📊 Pipeline de Machine Learning
+## Pipeline de Machine Learning
 
 A solução seguiu as seguintes etapas:
 
@@ -52,7 +52,7 @@ Avaliação por acurácia e análise de desempenho por classe
 
 Serialização do modelo para deploy
 
-##🚀 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 Python 3.11
 
@@ -68,7 +68,7 @@ Pickle (serialização do modelo)
 
 Git & GitHub
 
-##🖥️ Aplicação Preditiva (Streamlit)
+## Aplicação Preditiva (Streamlit)
 
 A aplicação web permite:
 
@@ -79,11 +79,11 @@ Predição automática do nível de obesidade
 Exibição das probabilidades por classe
 
 Apoio visual para interpretação clínica
-
-🔗 Link da aplicação:
+ 
+ Link da aplicação:
 https://tech-challenge-fase-04-obesity-jx2aeprbahjhygk9hpszpc.streamlit.app/
 
-##📈 Insights Analíticos
+## Insights Analíticos
 
 A análise exploratória identificou padrões relevantes, como:
 
@@ -95,13 +95,13 @@ Impacto do consumo frequente de alimentos altamente calóricos
 
 Esses insights podem auxiliar a equipe médica na definição de estratégias preventivas e acompanhamento clínico.
 
-##📂 Estrutura do Repositório
+## Estrutura do Repositório
 app.py
 modelo.pkl.gz
 colunas.pkl
 Obesity.csv
 requirements.txt
 
-##🎯 Resultado
+## Resultado
 
 O projeto entrega uma solução completa de Data Analytics aplicada à saúde, unindo modelagem preditiva, visualização e deploy em ambiente web.
