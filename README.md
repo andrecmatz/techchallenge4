@@ -1,3 +1,13 @@
+OBS: 
+
+Olá, tudo bem?
+
+Gostaria de pedir a exceção por conta da entrega atrasada. Meu PC foi invadido recentemente, estava no meio do processo para realizar o Tech Challenge e perdi tudo por conta da formatação para retirar o vírus/invasores do meu computador.
+
+Sei que o vídeo é entregável obrigatório, mas justamente por ter que ter feito as pressas por conta disso, não consegui realizar.
+
+Agradeço a compreensão!
+
 # Tech Challenge – Fase 04 | Predição de Obesidade
 
 ## Visão Geral
